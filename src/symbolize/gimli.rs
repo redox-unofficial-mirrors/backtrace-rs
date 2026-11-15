@@ -44,6 +44,7 @@ cfg_if::cfg_if! {
         target_os = "illumos",
         target_os = "aix",
         target_os = "cygwin",
+        target_os = "redox",
     ))] {
         #[path = "gimli/mmap_unix.rs"]
         mod mmap;
@@ -231,6 +232,7 @@ cfg_if::cfg_if! {
             target_os = "netbsd",
             target_os = "nto",
             target_os = "android",
+            target_os = "redox",
         ),
         not(target_env = "uclibc"),
     ))] {

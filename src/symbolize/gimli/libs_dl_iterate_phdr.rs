@@ -18,9 +18,9 @@ struct CallbackData {
 pub(super) fn native_libraries() -> Vec<Library> {
     let mut cb_data = CallbackData {
         libs: Vec::new(),
-        #[cfg(not(target_os = "hurd"))]
+        #[cfg(not(any(target_os = "hurd", target_os = "redox")))]
         maps: parse_running_mmaps::parse_maps().ok(),
-        #[cfg(target_os = "hurd")]
+        #[cfg(any(target_os = "hurd", target_os = "redox"))]
         maps: None,
     };
     unsafe {
@@ -33,7 +33,7 @@ fn infer_current_exe(
     maps: &Option<Vec<parse_running_mmaps::MapsEntry>>,
     base_addr: usize,
 ) -> OsString {
-    #[cfg(not(target_os = "hurd"))]
+    #[cfg(not(any(target_os = "hurd", target_os = "redox")))]
     if let Some(entries) = maps {
         let opt_path = entries
             .iter()

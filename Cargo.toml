@@ -117,3 +117,6 @@ harness = false
 [lints.rust]
 # This crate uses them pervasively
 unexpected_cfgs = "allow"
+
+[patch.crates-io]
+libc = { git = "https://gitlab.redox-os.org/redox-os/liblibc", branch = "redox-0.2.186" }
